@@ -1,14 +1,6 @@
 import React from 'react'
 import { View, StyleSheet } from 'react-native'
-import Button from './src/components/Button'
-
-function App(): JSX.Element {
-  return (
-    <View style={styles.container}>
-      <Button onPress={() => console.log('hola')} label={'hola'} />
-    </View>
-  )
-}
+import { Home } from './src/pages/Home/Home'
 
 const styles = StyleSheet.create({
   container: {
@@ -17,5 +9,10 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
 })
+const App = () => (
+  <View style={styles.container}>
+    <Home />
+  </View>
+)
 
 export default App
