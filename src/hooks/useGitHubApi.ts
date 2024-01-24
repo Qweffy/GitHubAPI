@@ -1,29 +1,31 @@
 import { useEffect, useState } from 'react'
-import { UserSummary, UserDetails, Repository, Organization } from '../types/githubAPI.types'
+import { UserDetails, Repository, Organization, UserSummary } from '../types/githubAPI.types'
 import { githubService } from '../services/githubService'
 
-export function useSearchUsers(query: string) {
-  const [loading, setLoading] = useState(false)
-  const [error, setError] = useState<Error | null>(null)
+export const useSearchUsers = () => {
   const [users, setUsers] = useState<UserSummary[]>([])
+  const [loading, setLoading] = useState<boolean>(false)
+  const [error, setError] = useState<Error | null>(null)
 
-  useEffect(() => {
+  const searchUsers = async (query: string) => {
     setLoading(true)
     setError(null)
 
-    githubService
-      .searchUsers(query)
-      .then((data) => {
-        setUsers(data)
-        setLoading(false)
-      })
-      .catch((err) => {
-        setError(err)
-        setLoading(false)
-      })
-  }, [query])
+    try {
+      const response = await fetch(`https://api.github.com/search/users?q=${query}`)
+      if (!response.ok) {
+        throw new Error('Error al buscar usuarios')
+      }
+      const userData = await response.json()
+      setUsers(userData.items)
+    } catch (err: any) {
+      setError(error)
+    } finally {
+      setLoading(false)
+    }
+  }
 
-  return { loading, error, users }
+  return { users, loading, error, searchUsers }
 }
 
 export function useUserDetails(username: string) {

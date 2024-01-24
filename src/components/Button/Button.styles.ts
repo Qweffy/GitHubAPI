@@ -2,10 +2,12 @@ import { StyleSheet, ViewStyle } from 'react-native'
 import { PrimaryColors } from '../../styles/Colors'
 import { bodyRegular } from '../../styles/Fonts'
 import { mediumSize } from '../../styles/Size'
+import { smallSpace } from '../../styles/Spacing'
 
 type ButtonStyleType = {
   buttonContainer: ViewStyle
   button: ViewStyle
+  searchInput: ViewStyle
   disabledButton: ViewStyle
   disabledLabel: ViewStyle
   buttonLabel: ViewStyle
@@ -18,6 +20,7 @@ export default StyleSheet.create<ButtonStyleType>({
     justifyContent: 'flex-start',
     flexDirection: 'row',
   },
+  searchInput: { borderColor: PrimaryColors.LightGray, borderWidth: 1, padding: smallSpace, width: '80%' },
   button: {
     flex: 1,
     flexDirection: 'row',
