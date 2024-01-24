@@ -1,18 +1,18 @@
 import React from 'react'
-import { View, StyleSheet } from 'react-native'
+import { NavigationContainer } from '@react-navigation/native'
+import { createNativeStackNavigator } from '@react-navigation/native-stack'
 import { Home } from './src/pages/Home/Home'
+import { Detail } from './src/pages/Detail/Detail'
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-  },
-})
+const Stack = createNativeStackNavigator()
+
 const App = () => (
-  <View style={styles.container}>
-    <Home />
-  </View>
+  <NavigationContainer>
+    <Stack.Navigator initialRouteName="Home">
+      <Stack.Screen name="Home" component={Home} />
+      <Stack.Screen name="Detail" component={Detail} />
+    </Stack.Navigator>
+  </NavigationContainer>
 )
 
 export default App
