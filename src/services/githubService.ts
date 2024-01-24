@@ -16,7 +16,7 @@ export const githubService = {
       return data.items as UserSummary[]
     } catch (error) {
       console.error('Error en la búsqueda de usuarios:', error)
-      throw error // Re-lanzar el error para que se maneje en el componente que llama a esta función
+      throw error
     }
   },
 
@@ -32,7 +32,7 @@ export const githubService = {
       return await (response.json() as Promise<UserDetails>)
     } catch (error) {
       console.error('Error al obtener detalles del usuario:', error)
-      throw error // Re-lanzar el error para que se maneje en el componente que llama a esta función
+      throw error
     }
   },
 
@@ -48,7 +48,7 @@ export const githubService = {
       return await (response.json() as Promise<Repository[]>)
     } catch (error) {
       console.error('Error al obtener repositorios del usuario:', error)
-      throw error // Re-lanzar el error para que se maneje en el componente que llama a esta función
+      throw error
     }
   },
 
@@ -64,7 +64,7 @@ export const githubService = {
       return await (response.json() as Promise<Organization[]>)
     } catch (error) {
       console.error('Error al obtener organizaciones del usuario:', error)
-      throw error // Re-lanzar el error para que se maneje en el componente que llama a esta función
+      throw error
     }
   },
 }

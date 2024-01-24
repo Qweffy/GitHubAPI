@@ -2,7 +2,6 @@ import React from 'react'
 import { ActivityIndicator, Text, TouchableOpacity, View } from 'react-native'
 
 import { ButtonProps } from './Button.types'
-
 import styles from './Button.styles'
 import { PrimaryColors } from '../../styles/Colors'
 
@@ -25,8 +24,12 @@ export const Button = ({
       <TouchableOpacity
         style={[styles.button, buttonBackground, disabledButton, buttonStyles]}
         onPress={onPress}
-        disabled={disabled}>
-        <Text style={[styles.buttonLabel, disabledLabel, labelStyles]}>{label}</Text>
+        disabled={disabled || isLoading}>
+        {isLoading ? (
+          <ActivityIndicator />
+        ) : (
+          <Text style={[styles.buttonLabel, disabledLabel, labelStyles]}>{label}</Text>
+        )}
       </TouchableOpacity>
     </View>
   )
